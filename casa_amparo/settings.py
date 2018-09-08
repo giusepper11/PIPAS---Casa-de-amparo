@@ -15,6 +15,8 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+# Variavel de produção
+PROD_ENV = False
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
@@ -23,9 +25,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 's-u9228yk%#2of3s826m_n^t32fx1fuxro!r@dl_xo(9^fr^2k'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+if PROD_ENV:
+    DEBUG = False
+else:
+    DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -73,10 +78,18 @@ WSGI_APPLICATION = 'casa_amparo.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
-PROD_ENV = False
+
 
 if PROD_ENV:
-    pass
+    DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'giusepper11$pipasdb',
+        'USER': 'giusepper11',
+        'PASSWORD': 'admin1234',
+        'HOST': 'giusepper11.mysql.pythonanywhere-services.com',
+    }
+}
 else:
     DATABASES = {
     'default': {
@@ -111,9 +124,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'pt-br'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Sao_Paulo'
 
 USE_I18N = True
 
