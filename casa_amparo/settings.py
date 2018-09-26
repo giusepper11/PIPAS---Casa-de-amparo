@@ -14,9 +14,12 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
+STATIC_DIR = os.path.join(BASE_DIR, 'static')
+MEDIA_DIR = os.path.join(BASE_DIR, 'media')
 
 # Variavel de produção
-PROD_ENV = False
+PROD_ENV = True
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
@@ -25,10 +28,10 @@ PROD_ENV = False
 SECRET_KEY = 's-u9228yk%#2of3s826m_n^t32fx1fuxro!r@dl_xo(9^fr^2k'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-if PROD_ENV:
-    DEBUG = False
-else:
-    DEBUG = True
+# if PROD_ENV:
+#     DEBUG = False
+# else:
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -42,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'home'
 ]
 
 MIDDLEWARE = [
@@ -59,7 +63,7 @@ ROOT_URLCONF = 'casa_amparo.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [TEMPLATE_DIR],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -88,6 +92,7 @@ if PROD_ENV:
         'USER': 'giusepper11',
         'PASSWORD': 'admin1234',
         'HOST': 'giusepper11.mysql.pythonanywhere-services.com',
+        'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
     }
 }
 else:
@@ -99,6 +104,7 @@ else:
         'PASSWORD': 'admin1234',
         'HOST': 'localhost',
         'PORT': '',
+        'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
         }
     }
 
@@ -134,8 +140,18 @@ USE_L10N = True
 
 USE_TZ = True
 
+MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    STATIC_DIR,
+]
+
+STATIC_ROOT = os.path.join(BASE_DIR, "static/")
+
+
+
