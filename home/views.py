@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.views.generic import TemplateView
+
+
 # Create your views here.
 
-def tempIndex(request):
-    return HttpResponse('<h1>Em breve !!!</h1>')
+class IndexView(TemplateView):
+    template_name = 'home/index.html'
