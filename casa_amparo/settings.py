@@ -35,7 +35,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -78,33 +77,31 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'casa_amparo.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 
-
 if PROD_ENV:
     DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'giusepper11$pipasdb',
-        'USER': 'giusepper11',
-        'PASSWORD': 'admin1234',
-        'HOST': 'giusepper11.mysql.pythonanywhere-services.com',
-        'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'giusepper11$pipasdb',
+            'USER': 'giusepper11',
+            'PASSWORD': 'admin1234',
+            'HOST': 'giusepper11.mysql.pythonanywhere-services.com',
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+        }
     }
-}
 else:
     DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'pipasdb_dev',
-        'USER': 'gro',
-        'PASSWORD': 'admin1234',
-        'HOST': 'localhost',
-        'PORT': '',
-        'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'pipasdb_dev',
+            'USER': 'gro',
+            'PASSWORD': 'admin1234',
+            'HOST': 'localhost',
+            'PORT': '',
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
         }
     }
 
@@ -125,7 +122,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
@@ -152,6 +148,3 @@ STATICFILES_DIRS = [
 ]
 
 STATIC_ROOT = '/var/www/static'
-
-
-
