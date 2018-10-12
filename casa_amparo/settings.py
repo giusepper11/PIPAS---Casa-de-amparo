@@ -97,7 +97,7 @@ else:
         'default': {
             'ENGINE': 'django.db.backends.mysql',
             'NAME': 'pipasdb_dev',
-            'USER': 'gro',
+            'USER': 'giusepper11',
             'PASSWORD': 'admin1234',
             'HOST': 'localhost',
             'PORT': '',
