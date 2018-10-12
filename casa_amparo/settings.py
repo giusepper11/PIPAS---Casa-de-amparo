@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+from decouple import config
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -19,19 +20,18 @@ STATIC_DIR = os.path.join(BASE_DIR, 'static')
 MEDIA_DIR = os.path.join(BASE_DIR, 'media')
 
 # Variavel de produção
-PROD_ENV = False
+PROD_ENV = config('PROD_ENV', default=True, cast=bool)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 's-u9228yk%#2of3s826m_n^t32fx1fuxro!r@dl_xo(9^fr^2k'
-
+SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 # if PROD_ENV:
 #     DEBUG = False
 # else:
-DEBUG = True
+DEBUG = config('DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS = ['*']
 
@@ -79,16 +79,17 @@ WSGI_APPLICATION = 'casa_amparo.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
-
+if not PROD_ENV:
+    print('Se o servidor rodar, o endereço que deve ser acessado é http://127.0.0.1:8000')
 
 if PROD_ENV:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'giusepper11$pipasdb',
-            'USER': 'giusepper11',
-            'PASSWORD': 'admin1234',
-            'HOST': 'giusepper11.mysql.pythonanywhere-services.com',
+            'NAME': config('DB_PROD_NAME'),
+            'USER': config('DB_PROD_USER'),
+            'PASSWORD': config('DB_PROD_PASS'),
+            'HOST': config('DB_PROD_HOST'),
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
         }
     }
@@ -96,15 +97,16 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'pipasdb_dev',
-            'USER': 'giusepper11',
-            'PASSWORD': 'admin1234',
-            'HOST': 'localhost',
+            'NAME': config('DB_NAME'),
+            'USER': config('DB_USER'),
+            'PASSWORD': config('DB_PASS'),
+            'HOST': config('DB_HOST'),
             'PORT': '',
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+            'TEST': {
+                'NAME': 'test_' + config('DB_NAME'),
+            },
         }
     }
-
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
 
