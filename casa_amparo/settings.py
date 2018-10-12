@@ -146,10 +146,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     STATIC_DIR,
 ]
-<<<<<<< HEAD
 
-STATIC_ROOT = '/var/www/static'
-=======
 if PROD_ENV:
     STATIC_ROOT = '/var/www/static'
->>>>>>> 0b11edb0c4de082ff4b600897d1ce68e0a455820
+
