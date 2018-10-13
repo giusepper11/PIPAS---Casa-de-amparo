@@ -150,5 +150,5 @@ STATICFILES_DIRS = [
 ]
 
 if PROD_ENV:
-    STATIC_ROOT = '/var/www/static'
+    STATIC_ROOT = '/var/www/static/casa_amparo'
 
