@@ -145,10 +145,15 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
 
 STATIC_URL = '/static/'
 
+
+STATIC_ROOT = '/var/www/static/casa_amparo'
+
+
+os.makedirs(STATIC_ROOT, exist_ok=True)
+os.makedirs(STATIC_DIR, exist_ok=True)
+
+
 STATICFILES_DIRS = [
     STATIC_DIR,
 ]
-
-if PROD_ENV:
-    STATIC_ROOT = '/var/www/static/casa_amparo'
 
