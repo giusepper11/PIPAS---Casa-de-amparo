@@ -148,9 +148,9 @@ STATIC_URL = '/static/'
 
 STATIC_ROOT = '/var/www/static/casa_amparo'
 
-
-os.makedirs(STATIC_ROOT, exist_ok=True)
-os.makedirs(STATIC_DIR, exist_ok=True)
+if PROD_ENV:
+    os.makedirs(STATIC_ROOT, exist_ok=True)
+    os.makedirs(STATIC_DIR, exist_ok=True)
 
 
 STATICFILES_DIRS = [
