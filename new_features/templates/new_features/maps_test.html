@@ -1,0 +1,16 @@
+{% extends 'home/bases/base.html' %}
+{% load staticfiles %}
+{% block title_block %}
+    <title>Mapas</title>
+{% endblock %}
+{% block scripts_block %}
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-core.js"></script>
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-service.js"></script>
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-ui.js"></script>
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-mapevents.js"></script>
+{% endblock %}
+{% block body_block %}
+    <h1 class="display-1 text-center">Mapas</h1>
+    <div id="map" style="width: 100%; height: 400px; background: grey"></div>
+    <script src="{% static '/new_features/maps/fixed_maps.js' %}"></script>
+{% endblock %}

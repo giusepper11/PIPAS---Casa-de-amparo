@@ -18,13 +18,15 @@
 
     <!-- Argon CSS -->
     <link type="text/css" href="{% static 'assets/css/argon.min.css' %}" rel="stylesheet">
+    {% block scripts_block %}
+    {% endblock %}
 
 </head>
 <body>
 <header>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-gradient-primary">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-gradient-primary headroom">
         <div class="container">
-            <a class="navbar-brand" href="#">Pipas</a>
+            <a class="navbar-brand" href="{% url 'home:index' %}">Pipas</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-default"
                     aria-controls="navbar-default" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -50,10 +52,11 @@
 
                 <ul class="navbar-nav ml-lg-auto">
                     <li class="nav-item">
-                        <a class="nav-link nav-link-icon" href="#">
-                            <i class="ni ni-favourite-28"></i>
+                        <a class="nav-link nav-link-icon" href="{% url 'new_features:maps' %}">
+
+                            <i class="ni ni-map-big"></i>
 {#                            <span class="nav-link-inner--text d-lg-none">Discover</span>#}
-                            <span class="nav-link-inner--text ">Discover</span>
+                            <span class="nav-link-inner--text ">Mapas</span>
                         </a>
                     </li>
                     <li class="nav-item">

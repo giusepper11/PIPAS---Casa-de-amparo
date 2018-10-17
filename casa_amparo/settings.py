@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'home'
+    'home',
+    'new_features'
 ]
 
 MIDDLEWARE = [
@@ -80,7 +81,7 @@ WSGI_APPLICATION = 'casa_amparo.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 if not PROD_ENV:
-    print('Se o servidor rodar, o endereço que deve ser acessado é http://127.0.0.1:8000')
+    print('Se o servidor rodar, o endereço que deve ser acessado é http://127.0.0.1:9001')
 
 if PROD_ENV:
     DATABASES = {
