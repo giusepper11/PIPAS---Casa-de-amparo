@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'casa_amparo.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 if not PROD_ENV:
-    print('Se o servidor rodar, o endereço que deve ser acessado é http://127.0.0.1:9001')
+    print(config('SERVER_MSG',default='', cast=str))
 
 if PROD_ENV:
     DATABASES = {
