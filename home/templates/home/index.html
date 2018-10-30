@@ -1,8 +1,32 @@
-{% extends 'home/bases/base.html' %}
+{% extends 'home/base/base.html' %}
+{% load staticfiles %}
 {% block title_block %}
-<title>HomePage</title>
+    <title>Home</title>
 {% endblock %}
+{% block page_header %}
+    <div class="page-header header-filter" data-parallax="true"
+         style="background-image: url('{% static 'home/img/kids_bg.jpg' %}');">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    {#                    <h1 class="title">Muitas formas de ajudar.</h1>#}
+                    <h1 class="title">Dê uma demonstração de afeto.</h1>
+                    <h4>Ajudando nossas instituições a garantirem um futuro melhor para as crianças que mais precisam
+                        dele.
+                    </h4>
+                    <br/>
+                    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank"
+                       class="btn btn-success btn-raised btn-lg">
+                        <i class="fa fa-heart "></i>Veja as Instituições
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
 {% block body_block %}
-    <h1 class="display-1">Casa de amparo</h1>
-    <p class="lead">Unidos vencemos</p>
-{% endblock %}
+    <div class="col-md-8 col-md-offset-2">
+        <h2 class="title">Como ajudar!</h2>
+        <h5 class="description">Unidos vencemos</h5>
+    </div>{% endblock %}
