@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'home',
     'new_features',
+    'accounts'
 ]
 
 MIDDLEWARE = [
@@ -158,3 +159,14 @@ STATICFILES_DIRS = [
     STATIC_DIR,
 ]
 
+
+
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = 'media'
+
+LOGIN_URL = '/login/'
+
+LOGIN_REDIRECT_URL = 'person_list'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
