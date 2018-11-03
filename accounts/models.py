@@ -1,14 +1,20 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
 
 
 # Create your models here.
+class User(AbstractUser):
+    is_pf = models.BooleanField(default=False)
+    is_pj = models.BooleanField(default=False)
+
+
 class Estado(models.Model):
     nome = models.CharField(max_length=255)
     uf = models.CharField(max_length=2)
 
     def __str__(self):
-        return self.nome + '-' + self.uf
+        return self.uf
+
 
 class Cidade(models.Model):
     nome = models.CharField(max_length=255)
@@ -17,9 +23,9 @@ class Cidade(models.Model):
     def __str__(self):
         return self.nome + '-' + self.uf.uf
 
+
 class Pessoa(models.Model):
     user = models.OneToOneField(User, on_delete=models.DO_NOTHING)
-    nome = models.CharField(max_length=255)
     endereco = models.CharField(max_length=255)
     bairro = models.CharField(max_length=255)
     cidade = models.ForeignKey(Cidade, on_delete=models.DO_NOTHING)
@@ -35,7 +41,7 @@ class Pessoa(models.Model):
         abstract = True
 
     def __str__(self):
-        return self.nome
+        return self.user.email
 
 
 class PessoaFisica(Pessoa):
@@ -44,16 +50,16 @@ class PessoaFisica(Pessoa):
 
 class PessoaJurica(Pessoa):
     cnpj = models.CharField(max_length=14)
+    is_instituicao = models.BooleanField(default=False)
 
 
 class Instituicoes(models.Model):
-    adm = models.OneToOneField(User, on_delete=models.DO_NOTHING)
     pf = models.OneToOneField(PessoaJurica, on_delete=models.DO_NOTHING)
     latitude = models.CharField(max_length=255)
     longitude = models.CharField(max_length=255)
 
     def __str__(self):
-        return self.pf.nome
+        return self.pf.user.first_name
 
 
 class Mensagens(models.Model):

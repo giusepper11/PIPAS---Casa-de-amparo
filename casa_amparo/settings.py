@@ -82,7 +82,7 @@ WSGI_APPLICATION = 'casa_amparo.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 if not PROD_ENV:
-    print(config('SERVER_MSG',default='', cast=str))
+    print(config('SERVER_MSG', default='', cast=str))
 
 if PROD_ENV:
     DATABASES = {
@@ -147,19 +147,15 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
 
 STATIC_URL = '/static/'
 
-
 STATIC_ROOT = '/var/www/static/casa_amparo'
 
 if PROD_ENV:
     os.makedirs(STATIC_ROOT, exist_ok=True)
     os.makedirs(STATIC_DIR, exist_ok=True)
 
-
 STATICFILES_DIRS = [
     STATIC_DIR,
 ]
-
-
 
 MEDIA_URL = '/media/'
 
@@ -169,4 +165,4 @@ LOGIN_URL = '/login/'
 
 LOGIN_REDIRECT_URL = 'person_list'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+AUTH_USER_MODEL = 'accounts.User'
