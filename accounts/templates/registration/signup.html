@@ -1,0 +1,60 @@
+{% extends 'registration/base/base.html' %}
+{% load staticfiles %}
+
+{% block page_header %}
+    <div class="page-header header-filter" filter-color="purple"
+         style="background-image: url({% static 'home/img/bg7.jpg' %}); background-size: cover; background-position: top center;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 ">
+
+                    <div class="card card-signup">
+                        <h2 class="card-title text-center">Qual seu perfil?</h2>
+                        <div class="row">
+                            <div class="col-md-6 text-center">
+                                <h3 class="">Pessoa Física</h3>
+                                <a href="{% url 'cadastro_pf' %}">Cadastrar</a>
+                            </div>
+                            <div class="col-md-6 text-center">
+                                <h3 class="">Pessoa Jurídica</h3>
+                                <a href="#">Cadastrar</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <footer class="footer">
+            <div class="container">
+                <nav class="pull-left">
+                    <ul>
+                        <li>
+                            <a href="http://www.creative-tim.com">
+                                PIPAS DevTeam
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="http://blog.creative-tim.com">
+                                Blog
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://www.creative-tim.com/license">
+                                Licenças
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="copyright pull-right">
+                    &copy;
+                    <script>document.write(new Date().getFullYear())</script>
+                    , feito com o <i class="fa fa-heart heart"></i> por PIPAS DevTeam
+                </div>
+            </div>
+        </footer>
+    </div>
+
+
+{% endblock %}

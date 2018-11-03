@@ -4,7 +4,7 @@ from accounts.models import *
 #
 
 admin.site.register(User)
-admin.site.register(PessoaJurica)
+admin.site.register(PessoaJuridica)
 admin.site.register(PessoaFisica)
 admin.site.register(Instituicoes)
 admin.site.register(Cidade)

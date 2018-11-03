@@ -45,7 +45,8 @@ class PessoaFisica(models.Model):
     def __str__(self):
         return f'Pessoa Fisica :{self.user.nome}'
 
-class PessoaJurica(models.Model):
+
+class PessoaJuridica(models.Model):
     user = models.OneToOneField(User, on_delete=models.DO_NOTHING, primary_key=True)
     cnpj = models.CharField(max_length=14)
     is_instituicao = models.BooleanField(default=False)
@@ -55,7 +56,7 @@ class PessoaJurica(models.Model):
 
 
 class Instituicoes(models.Model):
-    pf = models.OneToOneField(PessoaJurica, on_delete=models.DO_NOTHING, primary_key=True)
+    pf = models.OneToOneField(PessoaJuridica, on_delete=models.DO_NOTHING, primary_key=True)
     latitude = models.CharField(max_length=255, blank=True, null=True)
     longitude = models.CharField(max_length=255, blank=True, null=True)
 

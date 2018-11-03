@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm, UsernameField
 from django.db import transaction
 from localflavor.br.forms import BRCPFField
 from accounts.models import Cidade, Estado
-from accounts.models import PessoaJurica, PessoaFisica, User
+from accounts.models import PessoaJuridica, PessoaFisica, User
 
 
 class PessoaFisicaSignUpForm(UserCreationForm):
