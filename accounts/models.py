@@ -3,11 +3,6 @@ from django.contrib.auth.models import AbstractUser
 
 
 # Create your models here.
-class User(AbstractUser):
-    is_pf = models.BooleanField(default=False)
-    is_pj = models.BooleanField(default=False)
-
-
 class Estado(models.Model):
     nome = models.CharField(max_length=255)
     uf = models.CharField(max_length=2)
@@ -24,42 +19,48 @@ class Cidade(models.Model):
         return self.nome + '-' + self.uf.uf
 
 
-class Pessoa(models.Model):
-    user = models.OneToOneField(User, on_delete=models.DO_NOTHING)
+class User(AbstractUser):
+    nome = models.CharField(max_length=255)
     endereco = models.CharField(max_length=255)
     bairro = models.CharField(max_length=255)
-    cidade = models.ForeignKey(Cidade, on_delete=models.DO_NOTHING)
-    estado = models.ForeignKey(Estado, on_delete=models.DO_NOTHING)
+    cidade = models.ForeignKey(Cidade, on_delete=models.DO_NOTHING, blank=True, null=True)
+    estado = models.ForeignKey(Estado, on_delete=models.DO_NOTHING, blank=True, null=True)
     cep = models.CharField(max_length=8)
     data_cadastro = models.DateTimeField(auto_now_add=True)
-    data_manutencao = models.DateTimeField()
+    data_manutencao = models.DateTimeField(blank=True, null=True)
     controle = models.IntegerField(default=1)
     status = models.BooleanField(default=True)
     profile_pic = models.ImageField(blank=True, null=True)
-
-    class Meta:
-        abstract = True
+    is_pf = models.BooleanField(default=False)
+    is_pj = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.user.email
+        return f'Usuario :{self.username}'
 
 
-class PessoaFisica(Pessoa):
+class PessoaFisica(models.Model):
+    user = models.OneToOneField(User, on_delete=models.DO_NOTHING, primary_key=True)
     cpf = models.CharField(max_length=11)
 
+    def __str__(self):
+        return f'Pessoa Fisica :{self.user.nome}'
 
-class PessoaJurica(Pessoa):
+class PessoaJurica(models.Model):
+    user = models.OneToOneField(User, on_delete=models.DO_NOTHING, primary_key=True)
     cnpj = models.CharField(max_length=14)
     is_instituicao = models.BooleanField(default=False)
 
+    def __str__(self):
+        return f'Pessoa Juridica :{self.user.nome}'
+
 
 class Instituicoes(models.Model):
-    pf = models.OneToOneField(PessoaJurica, on_delete=models.DO_NOTHING)
-    latitude = models.CharField(max_length=255)
-    longitude = models.CharField(max_length=255)
+    pf = models.OneToOneField(PessoaJurica, on_delete=models.DO_NOTHING, primary_key=True)
+    latitude = models.CharField(max_length=255, blank=True, null=True)
+    longitude = models.CharField(max_length=255, blank=True, null=True)
 
     def __str__(self):
-        return self.pf.user.first_name
+        return self.pf.user.nome
 
 
 class Mensagens(models.Model):

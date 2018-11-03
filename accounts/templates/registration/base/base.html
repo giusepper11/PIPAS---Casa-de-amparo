@@ -26,7 +26,7 @@
 
 </head>
 
-<body class="landing-page">
+<body class="signup-page">
 <nav class="navbar navbar-danger navbar-transparent  navbar-absolute navbar-fixed-top">
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -54,26 +54,26 @@
                 </li>
 
                 {% if not user.is_authenticated %}
-                <li>
-                    <a href="../index.html">
-                        <i class="material-icons">
-                            person_add
-                        </i>
-                        Cadastre-se
-                    </a>
-                </li>
-                <li>
-                    <a href="../index.html" class="btn btn-success">
-                        Fazer Login
-                    </a>
-                </li>
+                    <li>
+                        <a href="../index.html">
+                            <i class="material-icons">
+                                person_add
+                            </i>
+                            Cadastre-se
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../index.html" class="btn btn-success">
+                            Fazer Login
+                        </a>
+                    </li>
                 {% else %}
 
-                <li>
-                    <a href="../index.html" class="btn btn-success">
-                        {{ user.get_short_name }}
-                    </a>
-                </li>
+                    <li>
+                        <a href="../index.html" class="btn btn-success">
+                            {{ user.get_short_name }}
+                        </a>
+                    </li>
                 {% endif %}
             </ul>
         </div>
@@ -81,48 +81,16 @@
 </nav>
 
 {% block page_header %}
-
 {% endblock %}
 
 
-{##}
-    {% block body_block %}
 
-    {% endblock %}
-
-
-{#</div>#}
+{% block body_block %}
+{% endblock %}
 
 
-<footer class="footer">
-    <div class="container">
-        <nav class="pull-left">
-            <ul>
-                <li>
-                    <a href="http://www.creative-tim.com">
-                        PIPAS DevTeam
-                    </a>
-                </li>
 
-                <li>
-                    <a href="http://blog.creative-tim.com">
-                        Blog
-                    </a>
-                </li>
-                <li>
-                    <a href="http://www.creative-tim.com/license">
-                        Licenças
-                    </a>
-                </li>
-            </ul>
-        </nav>
-        <div class="copyright pull-right">
-            &copy;
-            <script>document.write(new Date().getFullYear())</script>
-            , feito com o <i class="fa fa-heart heart"></i> por PIPAS DevTeam
-        </div>
-    </div>
-</footer>
+
 
 </body>
 <!--   Core JS Files   -->
