@@ -80,7 +80,7 @@ class InstituicaoLista(models.Model):
     bairro = models.CharField(max_length=255, blank=True, null=True)
     cep = models.CharField(max_length=255, blank=True, null=True)
     cidade = models.CharField(max_length=255, blank=True, null=True)
-    descricao = models.CharField(max_length=255, blank=True, null=True)
+    descricao = models.TextField(max_length=1000, blank=True, null=True)
     email = models.CharField(max_length=255, blank=True, null=True)
     endereco = models.CharField(max_length=255, blank=True, null=True)
     entidade_que_administra_o_abrigo = models.CharField(max_length=255, blank=True, null=True)
