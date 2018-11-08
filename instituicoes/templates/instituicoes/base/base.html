@@ -26,23 +26,63 @@
 
 </head>
 
-<body class="signup-page">
+<body class="blog-posts">
 <nav class="navbar navbar-danger navbar-transparent  navbar-absolute navbar-fixed-top">
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
-
         {% include 'base/nav_bar_base.html' %}
     </div>
 </nav>
 
 {% block page_header %}
+
 {% endblock %}
 
 
+{##}
+<div class="main main-raised">
+    <div class="container">
 
-{% block body_block %}
-{% endblock %}
+        {% block body_block %}
 
+        {% endblock %}
+
+    </div>
+</div>
+
+
+{#</div>#}
+
+
+<footer class="footer">
+    <div class="container">
+        <nav class="pull-left">
+            <ul>
+                <li>
+                    <a href="http://www.creative-tim.com">
+                        PIPAS DevTeam
+                    </a>
+                </li>
+
+                <li>
+                    <a href="http://blog.creative-tim.com">
+                        Blog
+                    </a>
+                </li>
+                <li>
+                    <a href="http://www.creative-tim.com/license">
+                        Licenças
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="copyright pull-right">
+            &copy;
+            <script>document.write(new Date().getFullYear())</script>
+            , feito com o <i class="fa fa-heart heart"></i> por PIPAS DevTeam
+        </div>
+    </div>
+</footer>
 
 </body>
 <!--   Core JS Files   -->
