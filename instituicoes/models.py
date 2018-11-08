@@ -26,6 +26,8 @@ class InstituicaoLista(models.Model):
     lat_long = models.CharField(max_length=255, blank=True, null=True)
     user_inst = models.ForeignKey(Instituicoes, blank=True, null=True, on_delete=models.DO_NOTHING)
     logo_img = models.ImageField(blank=True, null=True)
+    autorizado = models.BooleanField(default=False)
+    editado = models.BooleanField(default=False)
 
     def __str__(self):
         try:
