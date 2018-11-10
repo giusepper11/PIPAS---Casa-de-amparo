@@ -14,5 +14,5 @@ class UserAccountAdapter(DefaultAccountAdapter):
         if form.cleaned_data.get('is_pf',None):
             user.is_pf = True
         elif form.cleaned_data.get('is_pj',None):
-            user.is_pj = False
+            user.is_pj = True
         user.save()

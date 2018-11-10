@@ -6,10 +6,12 @@ from home.views import SignupProfileView
 import allauth.account.views as allauth_account_view
 
 from users.views.pessoa_fisica import pessoa_fisica_signup
+from users.views.pessoa_juridica import pessoa_juridica_signup
 
 urlpatterns = [
 
     url(r"^signuppf/$", pessoa_fisica_signup, name="account_signup_pf"),
+    url(r"^signuppj/$", pessoa_juridica_signup, name="account_signup_pj"),
 
     url(r"^login/$", allauth_account_view.login, name="account_login"),
     url(r"^logout/$", allauth_account_view.logout, name="account_logout"),

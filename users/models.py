@@ -59,7 +59,7 @@ class PessoaFisica(Pessoa):
 
 class PessoaJuridica(Pessoa):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, primary_key=True)
-    cnpj = models.CharField(max_length=14)
+    cnpj = models.CharField(max_length=18)
     is_instituicao = models.BooleanField(default=False)
 
     def __str__(self):
