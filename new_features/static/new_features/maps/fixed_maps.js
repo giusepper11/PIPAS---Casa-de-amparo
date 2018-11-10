@@ -2,9 +2,20 @@
  * Boilerplate map initialization code starts below:
  */
 function addMarkersToMap(map) {
-    var marcador = new H.map.Marker({lng:-46.620016 , lat: -23.501195});
-    map.addObject(marcador);
+    var parisMarker = new H.map.Marker({lat: 48.8567, lng: 2.3508});
+    map.addObject(parisMarker);
 
+    var romeMarker = new H.map.Marker({lat: 41.9, lng: 12.5});
+    map.addObject(romeMarker);
+
+    var berlinMarker = new H.map.Marker({lat: 52.5166, lng: 13.3833});
+    map.addObject(berlinMarker);
+
+    var madridMarker = new H.map.Marker({lat: 40.4, lng: -3.6833});
+    map.addObject(madridMarker);
+
+    var londonMarker = new H.map.Marker({lat: 51.5008, lng: -0.1224});
+    map.addObject(londonMarker);
 }
 
 //Step 1: initialize communication with the platform
@@ -22,8 +33,8 @@ var defaultLayers = platform.createDefaultLayers({
 //Step 2: initialize a map - this map is centered over Europe
 var map = new H.Map(document.getElementById('map'),
     defaultLayers.normal.map, {
-        center: {lng:-46.620016 , lat: -23.501195},
-        zoom: 16,
+        center: {lat: 50, lng: 5},
+        zoom: 4,
         pixelRatio: pixelRatio
     });
 

@@ -1,5 +1,5 @@
 from django.db import models
-from accounts.models import Instituicoes
+from users.models import Instituicoes
 # Create your models here.
 
 

@@ -5,7 +5,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
     </button>
-    <a class="navbar-brand" href="{% url 'home:index' %}">PIPAS</a>
+    <a class="navbar-brand" href="{% url 'home_page' %}">PIPAS</a>
 </div>
 
 <div class="collapse navbar-collapse">
@@ -23,7 +23,7 @@
 
         {% if not user.is_authenticated %}
             <li>
-                <a href="{% url 'cadastro_select' %}">
+                <a href="{% url 'account_signup' %}">
                     <i class="material-icons">
                         person_add
                     </i>
@@ -31,7 +31,7 @@
                 </a>
             </li>
             <li>
-                <a href="#" class="btn btn-success">
+                <a href="{% url 'account_login' %}" class="btn btn-success">
                     Fazer Login
                 </a>
             </li>
@@ -39,9 +39,17 @@
 
             <li>
                 <a href="#" class="btn btn-success">
-                    {{ user.nome }}
+                    {% if user.is_pf %}{{ user.pessoafisica.nome }}{% elif user.is_pj %}
+                        {{ user.pessoajuridica.nome }}{% else %}{{ user.username }}{% endif %}
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'account_logout' %}?next=/" class="btn btn-danger">
+                    Sair
                 </a>
             </li>
         {% endif %}
     </ul>
 </div>
+
+

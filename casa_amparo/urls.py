@@ -1,22 +1,24 @@
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, reverse
 from django.conf.urls.static import static
 from django.conf import settings
+from django.utils.functional import lazy
 from django.views.decorators.cache import never_cache
 
-from accounts.views import pessoa_fisica
-from home.views import SignupView
+from home.views import IndexView, SignupProfileView
+
 
 urlpatterns = [
-                  path('', include('home.urls')),
+                  path('', never_cache(IndexView.as_view()), name='home_page'),
                   path('new_features/', include('new_features.urls')),
                   path('instituicoes/', include('instituicoes.urls')),
 
-                  path('accounts/', include('django.contrib.auth.urls')),
-                  path('accounts/signup/', never_cache(SignupView.as_view()), name='cadastro_select'),
-                  path('accounts/signup/pf', never_cache(pessoa_fisica.PessoaFisicaSignUpView.as_view()), name='cadastro_pf'),
-                  # path('accounts/signup/pj', ),
-                  # path('accounts/signup/instituicao', ),
+                  path('users/profsel', SignupProfileView.as_view(), name='account_signup'),
+                  path('users/', include('users.urls')),
+
+                  # path('users/signup/pj', ),
+                  # path('users/signup/instituicao', ),
+
                   path('admin/', admin.site.urls),
 
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

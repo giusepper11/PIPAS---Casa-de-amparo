@@ -1,9 +1,9 @@
 from django.contrib import admin
-from accounts.models import *
+from users.models import *
 
 #
 
-admin.site.register(User)
+admin.site.register(CustomUser)
 admin.site.register(PessoaJuridica)
 admin.site.register(PessoaFisica)
 admin.site.register(Instituicoes)
