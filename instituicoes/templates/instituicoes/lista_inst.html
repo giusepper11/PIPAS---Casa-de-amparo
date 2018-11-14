@@ -5,66 +5,115 @@
 {% endblock %}
 {% block body_block %}
     <div class="section">
-        <div class="row">
+        <div class="container">
+            <h2 class="section-title">Find what you need</h2>
             <div class="row">
-                <div class="col-md-8 col-md-offset-2 text-center">
-                <h3 class="text-left">Selecionar por:</h3>
-                    <ul class="nav nav-pills nav-pills-success">
-                        <li class="active"><a href="#pill1" data-toggle="tab">Todas</a></li>
-                        <li><a href="#pill2" data-toggle="tab">World</a></li>
-                    </ul>
-                    <div class="tab-content tab-space">
-                        <div class="tab-pane active" id="pill1">
-                            <table class="table table-hover">
-                                <thead>
-                                <tr class="success">
-                                    <th class="title">Instituição</th>
-                                    <th class="title">Endereço</th>
-                                    <th class="title">Bairro</th>
+                <div class="col-md-3">
+                    <div class="card card-refine card-plain">
+                        <div class="card-content">
+                            <h4 class="card-title">
+                                Refine por
+                                <button class="btn btn-default btn-fab btn-fab-mini btn-simple pull-right" rel="tooltip"
+                                        title="" data-original-title="Redefinir filtros">
+                                    <i class="material-icons">cached</i>
+                                </button>
+                            </h4>
 
+                            <div class="panel panel-default panel-rose">
+                                <div class="panel-heading" role="tab" id="headingOne">
+                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
+                                       href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        <h4 class="panel-title">Bairros</h4>
+                                        <i class="material-icons">keyboard_arrow_down</i>
+                                    </a>
+                                </div>
+                                <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel"
+                                     aria-labelledby="headingTwo">
+                                    <div class="panel-body">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" value="" data-toggle="checkbox" checked="">
+                                                Blazers
+                                            </label>
+                                        </div>
 
-                                </tr>
-                                </thead>
-                                <tbody>
-                                {% for instituicaolista in object_list %}
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" value="" data-toggle="checkbox"><span
+                                                    class="checkbox-material"><span class="check"></span></span>
+                                                Casual Shirts
+                                            </label>
+                                        </div>
 
-                                    <tr class="tr">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" value="" data-toggle="checkbox"><span
+                                                    class="checkbox-material"><span class="check"></span></span>
+                                                Formal Shirts
+                                            </label>
+                                        </div>
 
-                                        <td class="text-left">{{ instituicaolista.instituicao | maiscula_m2 }}</td>
-                                        <td class="text-left">{{ instituicaolista.endereco | maiscula_m2 }}</td>
-                                        <td class="text-left">{{ instituicaolista.bairro | maiscula_m2 }}</td>
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" value="" data-toggle="checkbox"><span
+                                                    class="checkbox-material"><span class="check"></span></span>
+                                                Jeans
+                                            </label>
+                                        </div>
 
-                                    </tr>
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" value="" data-toggle="checkbox"><span
+                                                    class="checkbox-material"><span class="check"></span></span>
+                                                Polos
+                                            </label>
+                                        </div>
 
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" value="" data-toggle="checkbox"><span
+                                                    class="checkbox-material"><span class="check"></span></span>
+                                                Pyjamas
+                                            </label>
+                                        </div>
 
-                                {% endfor %}
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" value="" data-toggle="checkbox"><span
+                                                    class="checkbox-material"><span class="check"></span></span>
+                                                Shorts
+                                            </label>
+                                        </div>
 
-
-                                </tbody>
-                            </table>
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" value="" data-toggle="checkbox"><span
+                                                    class="checkbox-material"><span class="check"></span></span>
+                                                Trousers
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="tab-pane" id="pill2">
+                    </div><!-- end card -->
+                </div>
 
-                        </div>
-                        <div class="tab-pane" id="pill3">
+                <div class="col-md-9">
+                    <div class="row">
 
-                        </div>
-                        <div class="tab-pane" id="pill4">
-
-                        </div>
                     </div>
-
                 </div>
             </div>
-        </div>
 
+            <br>
+
+        </div>
     </div>
 
 {% endblock %}
-{% for inst in bairros %}
-    <a href="">
-        <p>{{ inst.bairro | capfirst }}</p>
-    </a>
+{% block bottom_scripts %}
+    <script>
 
-{% endfor %}
-
+    </script>
+{% endblock %}
