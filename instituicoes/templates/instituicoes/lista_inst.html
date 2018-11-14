@@ -6,12 +6,12 @@
 {% block body_block %}
     <div class="section">
         <div class="container">
-            <h2 class="section-title">Find what you need</h2>
+            <h2 class="section-title text-center">Find what you need</h2>
             <div class="row">
                 <div class="col-md-3">
                     <div class="card card-refine card-plain">
                         <div class="card-content">
-                            <h4 class="card-title">
+                            <h4 class="">
                                 Refine por
                                 <button class="btn btn-default btn-fab btn-fab-mini btn-simple pull-right" rel="tooltip"
                                         title="" data-original-title="Redefinir filtros">
@@ -19,7 +19,7 @@
                                 </button>
                             </h4>
 
-                            <div class="panel panel-default panel-rose">
+                            <div class="panel panel-default ">
                                 <div class="panel-heading" role="tab" id="headingOne">
                                     <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
                                        href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
@@ -30,68 +30,17 @@
                                 <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel"
                                      aria-labelledby="headingTwo">
                                     <div class="panel-body">
-                                        <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox" value="" data-toggle="checkbox" checked="">
-                                                Blazers
-                                            </label>
-                                        </div>
 
-                                        <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox" value="" data-toggle="checkbox"><span
-                                                    class="checkbox-material"><span class="check"></span></span>
-                                                Casual Shirts
-                                            </label>
-                                        </div>
+                                        {% for bairro in bairros %}
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" value="" data-toggle="checkbox">
+                                                    {{bairro.bairro}}
+                                                </label>
+                                            </div>
+                                        {% endfor %}
 
-                                        <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox" value="" data-toggle="checkbox"><span
-                                                    class="checkbox-material"><span class="check"></span></span>
-                                                Formal Shirts
-                                            </label>
-                                        </div>
 
-                                        <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox" value="" data-toggle="checkbox"><span
-                                                    class="checkbox-material"><span class="check"></span></span>
-                                                Jeans
-                                            </label>
-                                        </div>
-
-                                        <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox" value="" data-toggle="checkbox"><span
-                                                    class="checkbox-material"><span class="check"></span></span>
-                                                Polos
-                                            </label>
-                                        </div>
-
-                                        <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox" value="" data-toggle="checkbox"><span
-                                                    class="checkbox-material"><span class="check"></span></span>
-                                                Pyjamas
-                                            </label>
-                                        </div>
-
-                                        <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox" value="" data-toggle="checkbox"><span
-                                                    class="checkbox-material"><span class="check"></span></span>
-                                                Shorts
-                                            </label>
-                                        </div>
-
-                                        <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox" value="" data-toggle="checkbox"><span
-                                                    class="checkbox-material"><span class="check"></span></span>
-                                                Trousers
-                                            </label>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -99,10 +48,40 @@
                     </div><!-- end card -->
                 </div>
 
-                <div class="col-md-9">
-                    <div class="row">
+                <div class="col-md-8 col-md-offset-1 text-center">
+                    <div class="tab-content tab-space">
+                        <div class="tab-pane active" id="pill1">
+                            <table class="table table-hover">
+                                <thead>
+                                <tr class="success">
+                                    <th class="title">Instituição</th>
+                                    <th class="title">Endereço</th>
+                                    <th class="title">Bairro</th>
+
+
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for instituicaolista in object_list %}
+
+                                    <tr class="tr">
+
+                                        <td class="text-left">{{ instituicaolista.instituicao | maiscula_m2 }}</td>
+                                        <td class="text-left">{{ instituicaolista.endereco | maiscula_m2 }}</td>
+                                        <td class="text-left">{{ instituicaolista.bairro | maiscula_m2 }}</td>
+
+                                    </tr>
+
+
+                                {% endfor %}
+
+
+                                </tbody>
+                            </table>
+                        </div>
 
                     </div>
+
                 </div>
             </div>
 
