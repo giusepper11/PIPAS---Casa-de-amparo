@@ -12,7 +12,8 @@ class InstituicoesListView(ListView):
     template_name = 'instituicoes/lista_inst.html'
 
     def get_queryset(self):
-        return self.model.objects.exclude(instituicao__isnull=True).exclude(instituicao__exact='')
+        return self.model.objects.exclude(instituicao__isnull=True).exclude(instituicao__exact='').order_by('bairro')
+
 
 class BairrosListView(TemplateView):
     template_name = 'instituicoes/lista_inst.html'

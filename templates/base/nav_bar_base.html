@@ -31,14 +31,14 @@
                 </a>
             </li>
             <li>
-                <a href="{% url 'account_login' %}" class="btn btn-success">
+                <a href="{% url 'account_login' %}" class="btn btn-success btn-round">
                     Fazer Login
                 </a>
             </li>
         {% else %}
 
             <li>
-                <a href="#" class="btn btn-success">
+                <a href="#" class="btn btn-success btn-round">
                     {% if user.is_pf %}{{ user.pessoafisica.nome }}{% elif user.is_pj %}
                         {{ user.pessoajuridica.nome }}{% else %}{{ user.username }}{% endif %}
                 </a>
