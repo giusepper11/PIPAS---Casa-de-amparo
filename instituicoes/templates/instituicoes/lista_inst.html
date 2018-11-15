@@ -1,5 +1,6 @@
 {% extends 'instituicoes/base/base.html' %}
 {% load filters %}
+{% load staticfiles %}
 {% block page_header %}
     {% include 'instituicoes/base/inst_header_base.html' %}
 {% endblock %}
@@ -29,12 +30,12 @@
                                 </div>
                                 <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel"
                                      aria-labelledby="headingTwo">
-                                    <div class="panel-body">
+                                    <div class="panel-body" id="filter_bairro">
 
                                         {% for bairro in bairros %}
                                             <div class="checkbox">
                                                 <label>
-                                                    <input type="checkbox" value="" data-toggle="checkbox">
+                                                    <input type="checkbox" value="{{bairro.bairro}}" name="bairro" data-toggle="checkbox" class="filter">
                                                     {{bairro.bairro}}
                                                 </label>
                                             </div>
@@ -51,7 +52,7 @@
                 <div class="col-md-8 col-md-offset-1 text-center">
                     <div class="tab-content tab-space">
                         <div class="tab-pane active" id="pill1">
-                            <table class="table table-hover">
+                            <table class="table table-hover" id="instlist">
                                 <thead>
                                 <tr class="success">
                                     <th class="title">Instituição</th>
@@ -61,10 +62,10 @@
 
                                 </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="inst_table_content">
                                 {% for instituicaolista in object_list %}
 
-                                    <tr class="tr">
+                                    <tr class="tr" id="tr_inst">
 
                                         <td class="text-left">{{ instituicaolista.instituicao | maiscula_m2 }}</td>
                                         <td class="text-left">{{ instituicaolista.endereco | maiscula_m2 }}</td>
@@ -92,7 +93,6 @@
 
 {% endblock %}
 {% block bottom_scripts %}
-    <script>
+<script src="{% static 'instituicoes/js/script_lista.js' %}" type="text/javascript"></script>
 
-    </script>
 {% endblock %}

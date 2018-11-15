@@ -4954,7 +4954,7 @@ h2.title {
 }
 
 .panel .panel-heading a:hover, .panel .panel-heading a:active, .panel .panel-heading a[aria-expanded="true"] {
-    color: #9c27b0;
+    color: #4caf50;
 }
 
 .panel .panel-heading a[aria-expanded="true"] i, .panel .panel-heading a.expanded i {
