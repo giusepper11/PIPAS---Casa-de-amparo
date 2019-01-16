@@ -1,5 +1,5 @@
 from django.urls import path, include
-from instituicoes.views import InstituicoesListView, ajax_instfilter
+from casa_amparo.instituicoes.views import InstituicoesListView, ajax_instfilter
 from django.views.decorators.cache import never_cache
 
 
