@@ -5,4 +5,4 @@ set -o nounset
 
 
 rm -f './celerybeat.pid'
-celery -A apps.taskapp beat -l INFO --scheduler django_celery_beat.schedulers:DatabaseScheduler
+celery -A casa_amparo.taskapp beat -l INFO --scheduler django_celery_beat.schedulers:DatabaseScheduler

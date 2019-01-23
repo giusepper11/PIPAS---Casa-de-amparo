@@ -235,7 +235,7 @@ MANAGERS = ADMINS
 
 # Celery
 # ------------------------------------------------------------------------------
-INSTALLED_APPS += ['casa_amparo.taskapp.celery.CeleryAppConfig']
+INSTALLED_APPS += ['casa_amparo.taskapp.celery.CeleryAppConfig','django_celery_beat']
 if USE_TZ:
     # http://docs.celeryproject.org/en/latest/userguide/configuration.html#std:setting-timezone
     CELERY_TIMEZONE = TIME_ZONE
