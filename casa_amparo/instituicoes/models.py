@@ -36,6 +36,7 @@ class InstituicaoLista(models.Model):
             return 'instutição sem nome'
 
     def get_lat_long(self):
+
         if self.lat_long:
             long_lat = self.lat_long.split(',')
             return {'lng': long_lat[-1], 'lat': long_lat[0]}

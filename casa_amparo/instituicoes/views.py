@@ -3,7 +3,7 @@ from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render
 from django.utils.safestring import mark_safe
 from django.views.decorators.csrf import csrf_exempt
-from django.views.generic import ListView, TemplateView
+from django.views.generic import ListView, DetailView
 from django.db.models import Q
 
 from casa_amparo.instituicoes.models import InstituicaoLista
@@ -25,13 +25,14 @@ class InstituicoesListView(ListView):
         return context
 
 
-class BairrosListView(TemplateView):
-    template_name = 'instituicoes/lista_inst.html'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['bairros'] = InstituicaoLista.objects.order_by().values('bairro').distinct()
-        return context
+# class BairrosListView(TemplateView):
+#     template_name = 'instituicoes/lista_inst.html'
+#
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context['bairros'] = InstituicaoLista.objects.order_by().values('bairro').distinct()
+#         return context
+#
 
 
 @csrf_exempt

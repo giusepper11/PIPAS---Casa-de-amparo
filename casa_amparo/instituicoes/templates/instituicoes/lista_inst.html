@@ -65,7 +65,7 @@
                                 <tbody id="inst_table_content">
                                 {% for instituicaolista in object_list %}
 
-                                    <tr class="tr" id="tr_inst">
+                                    <tr class="tr clickable-row" id="tr_inst" data-href='{% url "home_page" %}'>
 
                                         <td class="text-left">{{ instituicaolista.instituicao | maiscula_m2 }}</td>
                                         <td class="text-left">{{ instituicaolista.endereco | maiscula_m2 }}</td>

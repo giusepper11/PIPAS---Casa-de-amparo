@@ -1,9 +1,10 @@
 var $filtersCheckboxes = $('.filter');
 var instlist = $('#inst_table_content');
 
+
 $filtersCheckboxes.on('change', function () {
 
-    instlist.hide();
+    // instlist.hide();
 
     var selectedFilters = {};
 
@@ -26,14 +27,18 @@ $filtersCheckboxes.on('change', function () {
         contentType: "application/json; charset=utf-8",
         success: function (r) {
             instlist.empty();
-            JSON.parse(r).forEach(function (x,y,z) {
+            JSON.parse(r).forEach(function (x, y, z) {
                 instlist.append(
-                    '<tr class="tr" id="tr_inst">' +
+                    '<tr class="tr clickable-row" id="tr_inst" data-href="/">' +
                     '<td class="text-left">' + x.instituicao + '</td>' +
                     '<td class="text-left">' + x.endereco + '</td>' +
                     '<td class="text-left">' + x.bairro + '</td>' + '</tr>'
                 )
-            })
+            });
+
+            $(".clickable-row").click(function () {
+                window.location = $(this).data("href");
+            });
         },
         error: function () {
             alert("Error")
@@ -43,8 +48,12 @@ $filtersCheckboxes.on('change', function () {
     instlist.show('slow')
 });
 
-                    //
-                    // '<tr class="tr" id="tr_inst">' +
-                    // '<td class="text-left">' + value.instituicao + '</td>' +
-                    // '<td class="text-left">' + value.endereco + '</td>' +
-                    // '<td class="text-left">' + value.bairro + '</td>' + '</tr>'
+
+$(".clickable-row").click(function () {
+    window.location = $(this).data("href");
+});
+//
+// '<tr class="tr" id="tr_inst">' +
+// '<td class="text-left">' + value.instituicao + '</td>' +
+// '<td class="text-left">' + value.endereco + '</td>' +
+// '<td class="text-left">' + value.bairro + '</td>' + '</tr>'
