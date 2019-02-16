@@ -29,7 +29,7 @@ $filtersCheckboxes.on('change', function () {
             instlist.empty();
             JSON.parse(r).forEach(function (x, y, z) {
                 instlist.append(
-                    '<tr class="tr clickable-row" id="tr_inst" data-href="/">' +
+                    '<tr class="tr clickable-row" id="tr_inst" data-href=' + x.pk + '>' +
                     '<td class="text-left">' + x.instituicao + '</td>' +
                     '<td class="text-left">' + x.endereco + '</td>' +
                     '<td class="text-left">' + x.bairro + '</td>' + '</tr>'
