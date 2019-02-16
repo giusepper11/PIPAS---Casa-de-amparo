@@ -1,0 +1,42 @@
+{% load staticfiles %}
+{% load filters %}
+<head>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
+        integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+        crossorigin=""/>
+
+  <style>
+    #location-map {
+      background: #fff;
+      border: none;
+      height: 380px;
+      width: 100%;
+      box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+    }
+  </style>
+</head>
+<body>
+<div id="location-map"></div>
+<script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
+        integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
+        crossorigin=""></script>
+{#<script src="{% static 'instituicoes/js/leaflet-providers.js' %}"></script>#}
+
+<script type="text/javascript">
+  var lat = {{ lat }};
+  var lng = {{ lng }};
+  var inst_name = '{{ instituicaolista.instituicao| maiscula_m2 }}';
+  var endereco = '{{ instituicaolista.endereco| maiscula_m2 }}';
+
+  var map = L.map('location-map').setView([lat, lng], 17);
+  mapLink = '<a href="https://openstreetmap.org">OpenStreetMap</a>';
+  L.tileLayer(
+    'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: 'Map data &copy; ' + mapLink,
+      maxZoom: 20,
+    }).addTo(map);
+  var marker = L.marker([lat, lng]).addTo(map).bindPopup("<b>" + inst_name + "</br></b>" + endereco + "<br>");
+</script>
+</body>

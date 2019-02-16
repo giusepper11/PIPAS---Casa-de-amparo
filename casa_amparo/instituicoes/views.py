@@ -35,6 +35,9 @@ class InstituicaoDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['body_style'] = 'profile-page'
+        lat_long = self.object.get_lat_long()
+        context['lat'] = lat_long.get('lat', -23.5505)  # lat e long da cidade de são paulo
+        context['lng'] = lat_long.get('lng', -46.6333)
         return context
 
 

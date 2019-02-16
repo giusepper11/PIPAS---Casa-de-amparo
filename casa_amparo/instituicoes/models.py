@@ -1,5 +1,4 @@
 from django.db import models
-
 from casa_amparo.users.models import Instituicoes
 
 
