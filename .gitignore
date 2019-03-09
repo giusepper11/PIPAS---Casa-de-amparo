@@ -331,3 +331,5 @@ casa_amparo/media/
 .env
 .envs/*
 !.envs/.local/
+
+.idea/vcs.xml
