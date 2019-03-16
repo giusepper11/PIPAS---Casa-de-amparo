@@ -1,13 +1,56 @@
-<div class="row">
-                            <div class="col-md-6 text-center">
-                                <h1>Django Login Mega-Tutorial</h1>
-                                {% if user.is_authenticated %}
-                                    <p>Welcome {{ user.username }} !!!</p>
-                                    <p><a href="{% url 'account_logout' %}">Log out</a>
-                                        {% else %}
-                                    <p><a href="{% url 'account_signup' %}">Sign Up</a></p>
-                                    <p><a href="{% url 'account_login' %}">Log In </a></p>
-                                    <p><a href="{% provider_login_url 'google' %}">Log In with Gmail</a></p>
-                                {% endif %}
-                            </div>
-                        </div>
+{% extends 'account/base/base.html' %}
+{% load staticfiles %}
+
+{% block page_header %}
+  <div class="page-header header-filter" filter-color="blue"
+       style="background-image: url({% static 'home/img/bg_inst.jpg' %}); background-size: cover; background-position: top center;">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 ">
+
+          <div class="card card-signup">
+            <h2 class="card-title text-center">{{ user_type }}</h2>
+
+            <div class="col-md-8 col-md-offset-2">
+
+              <form method="post" action="" class="">
+                {% csrf_token %}
+                <div class="card-content">
+                  {% for field in form %}
+
+
+                    <div class="form-group">
+                      <label class="" for="{{ field.id_for_label }}">
+                        {{ field.label }}
+                      </label>
+                      {% if field.errors %}
+                        {{ field.errors }}
+                        {{ field }}
+                      {% else %}
+                        {{ field }}
+                      {% endif %}
+
+                    </div>
+
+
+                  {% endfor %}
+                </div>
+                <div class="footer text-center">
+                  <button type="submit" class="btn btn-success btn-round">Registrar</button>
+                </div>
+
+              </form>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <footer class="footer">
+      {% include 'base/footer_base.html' %}
+    </footer>
+  </div>
+
+
+{% endblock %}

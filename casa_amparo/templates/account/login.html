@@ -1,8 +1,100 @@
+{% extends 'account/base/base.html' %}
 {% load socialaccount %}
-<h2>Login</h2>
+{% load filters %}
+{% load staticfiles %}
+{% block title_block %}
+  <title>Login</title>
+{% endblock %}
+{% block page_header %}
+{% endblock %}
+
+{% block body_block %}
+
+
+  <div class="page-header header-filter"
+       style="background-image: url({% static 'home/img/P01.jpg' %}); background-size: cover; background-position: top center;">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
+          <div class="card card-signup">
+            <form class="form" method="post" action="">
+              {% csrf_token %}
+{#              {{ form.non_field_errors }}#}
+{#              {{ form.source.errors }}#}
+{#              {{ form.source }}#}
+
+              <div class="header header-success text-center">
+                <h4 class="card-title">Entrar</h4>
+                <div class="social-line">
+                  <a href="#pablo" class="btn btn-just-icon btn-simple">
+                    <i class="fa fa-facebook-square"></i>
+                  </a>
+                  <a href="#pablo" class="btn btn-just-icon btn-simple">
+                    <i class="fa fa-google-plus"></i>
+                  </a>
+                </div>
+              </div>
+
+              <div class="card-content">
+
+                <div class="input-group">
+									<span id="id_login" class="input-group-addon">
+										<i class="material-icons">face</i>
+									</span>
+
+                  <input type="text"
+                         name="{{ form.login.name }}"
+                         id="{{ form.login.id_for_label }}"
+                         {% if form.login.value != None %}value="{{ form.login.value|stringformat:'s' }} "{% endif %}
+                         maxlength="{{ form.login.field.max_length }}"
+                         placeholder="Usuário"
+                         class="form-control"
+                         {% if form.login.field.required %}required{% endif %}>
+                </div>
+
+
+                <!-- Editado pelo Pedro -->
+                <div class="input-group">
+									<span id="id_password" class="input-group-addon">
+										<i class="material-icons">lock_outline</i>
+									</span>
+                  <input type="password"
+                         name="{{ form.password.name }}"
+                         id="{{ form.password.id_for_label }}"
+                         {% if form.password.value != None %}value="{{ form.password.value|stringformat:'s' }} "{% endif %}
+                         maxlength="{{ form.password.field.max_length }}"
+                         placeholder="Senha"
+                         class="form-control"
+                         {% if form.password.field.required %}required{% endif %}>
+                </div>
+
+                <!-- Editador pelo Pedro -->
+                {#                <div class="checkbox">#}
+                {#                  <label>#}
+                {#                    <input type="checkbox" name="optionsCheckboxes">#}
+                {#                    Lembrar Usuário#}
+                {#                  </label>#}
+                {#                </div>#}
+
+              </div>
+
+              <!-- Editador pelo Pedro -->
+              <div class="footer text-center">
+                <button type="submit" class="btn btn-success btn-simple btn-wd btn-lg">Login</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+{% endblock %}
+
+{#<h2>Login</h2>#}
 {#<p><a href="{% provider_login_url 'google' %}">Log In with Gmail</a></p>#}
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Login</button>
-</form>
+{#<form method="post">#}
+{#    {% csrf_token %}#}
+{#    {{ form.as_p }}#}
+{#    <button type="submit">Login</button>#}
+{#</form>#}

@@ -25,6 +25,10 @@ class PessoaFisicaSignUpView(SignupView):
     # (N.B: the following values are the default)
     # success_url = None
     # redirect_field_name = 'next'
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['body_style'] = 'login-page'
+        return context
 
 
 # Create the view (we will reference to it in the url patterns)

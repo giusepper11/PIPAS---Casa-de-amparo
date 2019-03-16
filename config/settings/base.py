@@ -57,7 +57,7 @@ DJANGO_APPS = [
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.humanize', # Handy template tags
+    'django.contrib.humanize',  # Handy template tags
     'django.contrib.admin',
 ]
 THIRD_PARTY_APPS = [
@@ -73,6 +73,7 @@ LOCAL_APPS = [
     'casa_amparo.home',
     'casa_amparo.new_features',
     'casa_amparo.instituicoes',
+    'casa_amparo.doacoes',
 
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -235,7 +236,7 @@ MANAGERS = ADMINS
 
 # Celery
 # ------------------------------------------------------------------------------
-INSTALLED_APPS += ['casa_amparo.taskapp.celery.CeleryAppConfig','django_celery_beat']
+INSTALLED_APPS += ['casa_amparo.taskapp.celery.CeleryAppConfig', 'django_celery_beat']
 if USE_TZ:
     # http://docs.celeryproject.org/en/latest/userguide/configuration.html#std:setting-timezone
     CELERY_TIMEZONE = TIME_ZONE
@@ -266,7 +267,6 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_ADAPTER = 'casa_amparo.users.adapter.UserAccountAdapter'
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
 # SOCIALACCOUNT_ADAPTER = 'casa_amparo.users.adapter.SocialAccountAdapter'
-
 
 
 LOGIN_URL = '/login/'
