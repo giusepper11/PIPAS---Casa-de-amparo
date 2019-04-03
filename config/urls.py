@@ -4,9 +4,11 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.views.generic import TemplateView
 from django.views import defaults as default_views
+from rest_framework import routers
 
 from casa_amparo.home.views import IndexView, SignupProfileView
 
+router = routers.DefaultRouter()
 
 urlpatterns = [
                   path('', IndexView.as_view(), name='home_page'),
@@ -15,14 +17,13 @@ urlpatterns = [
 
                   path('users/profsel', SignupProfileView.as_view(), name='account_signup'),
                   path('users/', include('casa_amparo.users.urls')),
-
+                  path('api/', include(router.urls)),
                   # path('users/signup/pj', ),
                   # path('users/signup/instituicao', ),
 
                   path('admin/', admin.site.urls),
 
-
-] + static(
+              ] + static(
     settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
 )
 

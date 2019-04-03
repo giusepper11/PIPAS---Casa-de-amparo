@@ -16,7 +16,7 @@
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/casa_amparo/_templates" />
     </content>
-    <orderEntry type="jdk" jdkName="Remote Python 3.6.8 Docker Compose (django at [/home/gro/cursos/casa_amparo/local.yml])" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Remote Python 3.6.8 Docker Compose (django at [/home/gro/ope/PIPAS-Casa-de-amparo/local.yml])" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="R User Library" level="project" />
     <orderEntry type="library" name="R Skeletons" level="application" />
