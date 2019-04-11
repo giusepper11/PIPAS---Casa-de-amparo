@@ -296,13 +296,7 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 10,
 }
 
-
-CORS_ORIGIN_WHITELIST = (
-    'google.com',
-    'hostname.example.com',
-    'localhost:8084',
-    '127.0.0.1:8084'
-)
+CORS_ORIGIN_ALLOW_ALL = True
 
 CORS_ALLOW_METHODS = (
     # 'DELETE',
