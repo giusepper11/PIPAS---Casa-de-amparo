@@ -16,7 +16,7 @@ class Cidade(models.Model):
     uf = models.ForeignKey(Estado, on_delete=models.DO_NOTHING)
 
     def __str__(self):
-        return self.nome + '-' + self.uf.uf
+        return self.nome
 
 
 class CustomUserManager(UserManager):
