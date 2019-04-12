@@ -2,36 +2,37 @@
 {% load staticfiles %}
 <html lang="pt-br">
 <head>
-    <meta charset="utf-8"/>
-    <link rel="icon" type="image/png" href="{% static 'home/img/favicon.png' %}">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <meta charset="utf-8"/>
+  <link rel="icon" type="image/png" href="{% static 'home/img/favicon.png' %}">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
 
-    {% block title_block %}
+  {% block title_block %}
 
-    {% endblock %}
+  {% endblock %}
 
-    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport'/>
+  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport'/>
 
-    <!--     Fonts and icons     -->
-    <link rel="stylesheet" type="text/css"
-          href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"/>
+  <!--     Fonts and icons     -->
+  <link rel="stylesheet" type="text/css"
+        href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"/>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"/>
 
-    <!-- CSS Files -->
-    <link href="{% static 'home/css/bootstrap.min.css' %}" rel="stylesheet"/>
-    <link href="{% static 'home/css/material-kit.css' %}" rel="stylesheet"/>
+  <!-- CSS Files -->
+  <link href="{% static 'home/css/bootstrap.min.css' %}" rel="stylesheet"/>
+  <link href="{% static 'home/css/material-kit.css' %}" rel="stylesheet"/>
 
-    {% block top_scripts_block %}
-    {% endblock %}
+  {% block top_scripts_block %}
+  {% endblock %}
 
 </head>
 
-<body class="landing-page">
-<nav class="navbar navbar-default navbar-transparent navbar-fixed-top navbar-color-on-scroll" color-on-scroll="100" id="sectionsNav">
-    <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        {% include 'base/nav_bar_base.html' %}
-    </div>
+<body class="{{ body_class }}">
+<nav class="navbar navbar-default navbar-transparent navbar-fixed-top navbar-color-on-scroll" color-on-scroll="100"
+     id="sectionsNav">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    {% include 'base/nav_bar_base.html' %}
+  </div>
 </nav>
 
 {% block page_header %}
@@ -49,33 +50,23 @@
 
 
 <footer class="footer">
-    <div class="container">
-        <nav class="pull-left">
-            <ul>
-                <li>
-                    <a href="#">
-                        PIPAS DevTeam
-                    </a>
-                </li>
+  <div class="container">
+    <nav class="pull-left">
+      <ul>
+        <li>
+          <a href="{% url 'about_us' %}">
+            PIPAS DevTeam
+          </a>
+        </li>
 
-                <li>
-                    <a href="#">
-                        Blog
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        Licenças
-                    </a>
-                </li>
-            </ul>
-        </nav>
-        <div class="copyright pull-right">
-            &copy;
-            <script>document.write(new Date().getFullYear())</script>
-            , feito com o <i class="fa fa-heart heart"></i> por PIPAS DevTeam
-        </div>
+      </ul>
+    </nav>
+    <div class="copyright pull-right">
+      &copy;
+      <script>document.write(new Date().getFullYear())</script>
+      , feito com o <i class="fa fa-heart heart"></i> por PIPAS DevTeam
     </div>
+  </div>
 </footer>
 
 </body>

@@ -5,7 +5,7 @@ from django.urls import include, path
 from django.views import defaults as default_views
 from rest_framework import routers
 
-from casa_amparo.home.views import IndexView, SignupProfileView
+from casa_amparo.home.views import IndexView, SignupProfileView, AboutUsView
 from casa_amparo.instituicoes.api.viewsets import InstituicaoViewSet
 
 router = routers.DefaultRouter()
@@ -13,6 +13,7 @@ router.register(r'instituicao', InstituicaoViewSet)
 
 urlpatterns = [
                   path('', IndexView.as_view(), name='home_page'),
+                  path('about_us', AboutUsView.as_view(), name='about_us'),
                   path('new_features/', include('casa_amparo.new_features.urls')),
                   path('instituicoes/', include('casa_amparo.instituicoes.urls')),
 
