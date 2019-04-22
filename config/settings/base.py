@@ -271,7 +271,7 @@ ACCOUNT_ADAPTER = 'casa_amparo.users.adapter.UserAccountAdapter'
 # SOCIALACCOUNT_ADAPTER = 'casa_amparo.users.adapter.SocialAccountAdapter'
 
 
-LOGIN_URL = '/login/'
+LOGIN_URL = '/users/login/'
 
 LOGIN_REDIRECT_URL = '/'
 

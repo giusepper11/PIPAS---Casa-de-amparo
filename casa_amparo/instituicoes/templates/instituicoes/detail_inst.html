@@ -140,9 +140,10 @@
         {# TAB doaçoes #}
         <div class="tab-pane text-center gallery" id="media">
           <div class="row">
+            {#Tabela de demanda#}
             <div class="col-md-10 col-md-offset-1">
               <h4 class="title">Solicitação de doações</h4>
-              <div class="tab-content tab-space">
+              <div class="tab-content">
                 <div class="tab-pane active" id="pill1">
                   <table class="table table-hover" id="instlist">
                     <thead>
@@ -152,7 +153,7 @@
                       <th class="title">Observações</th>
                       <th class="title">Data da solicitação</th>
                       {% if user.is_authenticated %}
-                        <th class="title">Doar</th>
+                        <th class="title"></th>
                       {% endif %}
 
 
@@ -188,7 +189,12 @@
 
               </div>
             </div>
-
+            {#Doacao Outros#}
+            <div class="row"></div>
+            <div class="col-md-10 col-md-offset-1">
+              <h3 class="title">Se deseja ofereçer ajuda de algo que não está na lista, clique abaixo</h3>
+              <a href="{% url 'doacoes:doacao_outros_create' %}" class="btn btn-success">Ajudar</a>
+            </div>
           </div>
           {#Fim TAB chat#}
         </div>
