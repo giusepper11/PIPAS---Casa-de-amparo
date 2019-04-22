@@ -9,8 +9,7 @@ class InstituicaoViewSet(ReadOnlyModelViewSet):
     """
 
     """
-    queryset = InstituicaoLista.objects.exclude(instituicao__isnull=True).exclude(instituicao__exact='')
-    # .exclude(editado=False)
+    queryset = InstituicaoLista.objects.exclude(instituicao__isnull=True).exclude(instituicao__exact='').exclude(editado=False)
     serializer_class = InstituicaoSerializer
     filter_backends = (filters.SearchFilter,)
     search_fields = ('instituicao', 'bairro', 'cep')

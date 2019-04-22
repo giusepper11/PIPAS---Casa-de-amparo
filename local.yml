@@ -10,7 +10,7 @@ services:
       context: .
       dockerfile: ./compose/local/django/Dockerfile
     image: casa_amparo_local_django
-    restart: always
+#    restart: always
     depends_on:
       - postgres
       - mailhog
@@ -44,29 +44,29 @@ services:
   redis:
     image: redis:3.2
 
-  celeryworker:
-    <<: *django
-    image: casa_amparo_local_celeryworker
-    depends_on:
-      - redis
-      - postgres
-      - mailhog
-    ports: []
-    command: /start-celeryworker
-
-  celerybeat:
-    <<: *django
-    image: casa_amparo_local_celerybeat
-    depends_on:
-      - redis
-      - postgres
-      - mailhog
-    ports: []
-    command: /start-celerybeat
-
-  flower:
-    <<: *django
-    image: casa_amparo_local_flower
-    ports:
-      - "5555:5555"
-    command: /start-flower
+#  celeryworker:
+#    <<: *django
+#    image: casa_amparo_local_celeryworker
+#    depends_on:
+#      - redis
+#      - postgres
+#      - mailhog
+#    ports: []
+#    command: /start-celeryworker
+#
+#  celerybeat:
+#    <<: *django
+#    image: casa_amparo_local_celerybeat
+#    depends_on:
+#      - redis
+#      - postgres
+#      - mailhog
+#    ports: []
+#    command: /start-celerybeat
+#
+#  flower:
+#    <<: *django
+#    image: casa_amparo_local_flower
+#    ports:
+#      - "5555:5555"
+#    command: /start-flower
