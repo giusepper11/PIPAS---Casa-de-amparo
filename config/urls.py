@@ -16,6 +16,7 @@ urlpatterns = [
                   path('about_us', AboutUsView.as_view(), name='about_us'),
                   path('new_features/', include('casa_amparo.new_features.urls')),
                   path('instituicoes/', include('casa_amparo.instituicoes.urls')),
+                  path('doacoes/', include('casa_amparo.doacoes.urls')),
 
                   path('users/profsel', SignupProfileView.as_view(), name='account_signup'),
                   path('users/', include('casa_amparo.users.urls')),

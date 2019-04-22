@@ -1,3 +1,4 @@
 from django.contrib import admin
+from casa_amparo.doacoes.models import DemandaDoacao
 
-# Register your models here.
+admin.site.register(DemandaDoacao)

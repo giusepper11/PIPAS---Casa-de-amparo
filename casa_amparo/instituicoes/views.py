@@ -6,6 +6,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import ListView, DetailView
 from django.db.models import Q
 
+from casa_amparo.doacoes.models import DemandaDoacao
 from casa_amparo.instituicoes.models import InstituicaoLista
 
 
@@ -38,6 +39,7 @@ class InstituicaoDetailView(DetailView):
         lat_long = self.object.get_lat_long()
         context['lat'] = lat_long.get('lat', -23.5505)  # lat e long da cidade de são paulo
         context['lng'] = lat_long.get('lng', -46.6333)
+        context['doacoes'] = DemandaDoacao.objects.filter(instituicao=self.object.id)
         return context
 
 

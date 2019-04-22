@@ -12,6 +12,9 @@ class DemandaDoacao(models.Model):
     dt_criacao = models.DateTimeField(auto_now_add=True)
     dt_atualizacao = models.DateTimeField(auto_now=True)
 
+    def __str__(self):
+        return f"{self.instituicao.instituicao} : {self.doacao}"
+
 #
 # class Doacao(models.Model):
 #     doador = models.ForeignKey(Pessoa, on_delete=models.DO_NOTHING)
