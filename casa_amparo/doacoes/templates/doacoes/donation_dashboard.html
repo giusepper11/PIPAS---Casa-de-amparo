@@ -1,1 +1,107 @@
-{{ demandadoacao_list }}
+{% extends 'instituicoes/base/base.html' %}
+{% load filters %}
+{% load staticfiles %}
+{% block title_block %}
+  <title>Dashboard de doações</title>
+{% endblock %}
+{% block page_header %}
+  {% include 'instituicoes/base/instdetail_header_base.html' %}
+{% endblock %}
+{% block body_block %}
+  <div class="profile-content">
+    <div class="container">
+
+
+      <div class="row">
+        <h2 class="text-center">Painel de Doações</h2>
+      </div>
+
+      {# Seletores #}
+      <div class="col-md-12">
+        <!-- Tabs on Plain Card -->
+        <div class="card card-nav-tabs card-plain">
+
+
+          <div class="header header-success">
+            <!-- colors: "header-primary", "header-info", "header-success", "header-warning", "header-danger" -->
+            <div class="nav-tabs-navigation">
+              <div class="nav-tabs-wrapper">
+                <ul class="nav nav-tabs" data-tabs="tabs">
+                  <li class="active"><a href="#doacoes" data-toggle="tab">Doações cadastradas</a></li>
+                  <li><a href="#updates" data-toggle="tab">Ofertas de doação</a></li>
+                  <li class="pull-right"><a href="#new_donation" data-toggle="tab" aria-expanded="true">
+                    <i class="material-icons">add</i> Nova Doação
+                  </a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="card-content">
+            <div class="tab-content text-center">
+
+              <div class="tab-pane active" id="doacoes">
+                <table class="table table-hover table-condensed" id="doacao">
+                  <thead>
+                  <tr class="success">
+                    <th class="title">Doação</th>
+                    <th class="title">Qtd</th>
+                    <th class="title">Obs</th>
+                    <th class="title">Data da solicitação</th>
+                    <th class="title">Recebido</th>
+                    {% if user.is_authenticated %}
+                      <th class="title"></th>
+                    {% endif %}
+
+
+                  </tr>
+                  </thead>
+                  <tbody id="">
+
+                  {% for doacao in demandadoacao_list %}
+                    <tr class="tr clickable-row" id="" data-href='#'>
+                    <td class="text-left">{{ doacao.doacao }}</td>
+                    <td class="text-left">{{ doacao.qtd }}</td>
+                    <td class="text-left">{{ doacao.obs }}</td>
+                    <td class="text-left">{{ doacao.dt_criacao | date }}</td>
+                    {% if doacao.recebido %}
+                    <td class="text-left"><i class="material-icons">done</i></td>
+                      {% else %}
+                      <td class="text-left"><i class="material-icons">clear</i></td>
+                    {% endif %}
+
+                    {% if user.is_authenticated %}
+                      <td class="text-left"><a href="{% url 'doacoes:doacao_detail' doacao.pk %}"
+                                               class="btn btn-success">DOAR</a></td>
+                    {% endif %}
+                  {% endfor %}
+
+                  </tr>
+
+
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="tab-pane" id="updates">
+                <p> loren </p>
+              </div>
+
+              <div class="tab-pane" id="new_donation">
+                <p> loren</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <!-- End Tabs on plain Card -->
+
+
+      </div>
+    </div>
+  </div>
+  {#Fim Seletores#}
+
+
+{% endblock %}
