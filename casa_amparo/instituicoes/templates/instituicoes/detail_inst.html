@@ -167,8 +167,8 @@
                         <td class="text-left">{{ doacao.qtd }}</td>
                         <td class="text-left">{{ doacao.obs }}</td>
                         <td class="text-left">{{ doacao.dt_criacao }}</td>
-                        {% if user.is_authenticated %}
-                          <td class="text-left"><a href="{% url 'doacoes:doacao_detail' doacao.pk %}"
+                        {% if user.is_authenticated  %}
+                          <td class="text-left"><a href="#"
                                                    class="btn btn-success">DOAR</a></td>
                         {% endif %}
                       {% endfor %}

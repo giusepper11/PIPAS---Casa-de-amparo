@@ -4,11 +4,31 @@
 {% block title_block %}
   <title>Dashboard de doações</title>
 {% endblock %}
+
+{% block top_scripts_block %}
+  <script src="http://malsup.github.com/jquery.form.js"></script>
+
+{% endblock %}
 {% block page_header %}
   {% include 'instituicoes/base/instdetail_header_base.html' %}
 {% endblock %}
+
 {% block body_block %}
+
   <div class="profile-content">
+
+    <div class="modal fade in" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true" data-backdrop="false">
+
+      <div class="modal-dialog">
+
+        <div class="modal-content">
+
+        </div>
+
+      </div>
+
+    </div>
     <div class="container">
 
 
@@ -18,6 +38,8 @@
 
       {# Seletores #}
       <div class="col-md-12">
+
+
         <!-- Tabs on Plain Card -->
         <div class="card card-nav-tabs card-plain">
 
@@ -32,6 +54,8 @@
                   <li class="pull-right"><a href="#new_donation" data-toggle="tab" aria-expanded="true">
                     <i class="material-icons">add</i> Nova Doação
                   </a></li>
+
+
                 </ul>
               </div>
             </div>
@@ -59,22 +83,26 @@
                   </thead>
                   <tbody id="">
 
-                  {% for doacao in demandadoacao_list %}
+                  {% for doacao in donations %}
                     <tr class="tr clickable-row" id="" data-href='#'>
                     <td class="text-left">{{ doacao.doacao }}</td>
                     <td class="text-left">{{ doacao.qtd }}</td>
                     <td class="text-left">{{ doacao.obs }}</td>
                     <td class="text-left">{{ doacao.dt_criacao | date }}</td>
                     {% if doacao.recebido %}
-                    <td class="text-left"><i class="material-icons">done</i></td>
-                      {% else %}
+                      <td class="text-left"><i class="material-icons">done</i></td>
+                    {% else %}
                       <td class="text-left"><i class="material-icons">clear</i></td>
                     {% endif %}
 
-                    {% if user.is_authenticated %}
-                      <td class="text-left"><a href="{% url 'doacoes:doacao_detail' doacao.pk %}"
-                                               class="btn btn-success">DOAR</a></td>
-                    {% endif %}
+                    <td class="td-actions text-right">
+                      <a href="{% url 'doacoes:doacao_update' doacao.pk %}" data-toggle="modal"
+                         rel="tooltip" data-target="#modal" title="Editar doação" data-tooltip
+                         class="btn btn-success">
+                        <i class="material-icons">edit</i>
+                      </a>
+                    </td>
+
                   {% endfor %}
 
                   </tr>
@@ -88,9 +116,61 @@
                 <p> loren </p>
               </div>
 
+
+              {#            new donation#}
+              {#              doacao#}
+              {#              qtd#}
+              {#              obs#}
               <div class="tab-pane" id="new_donation">
-                <p> loren</p>
+                <form action="" method="post">
+                  {% csrf_token %}
+                  <div class="row">
+
+                    <div class="col-md-8">
+                      <div class="form-group label-floating is-empty">
+                        <label for="{{ form.doacao.id_for_label }}" class="control-label">Pedido de doação</label>
+                        <input type="text"
+                               name="{{ form.doacao.name }}"
+                               id="{{ form.doacao.id_for_label }}"
+                               {% if form.doacao.value != None %}value="{{ form.doacao.value|stringformat:'s' }} "{% endif %}
+                               maxlength="{{ form.doacao.field.max_length }}"
+                               class="form-control"
+                               {% if form.doacao.field.required %}required{% endif %}>
+                      </div>
+                    </div>
+
+                    <div class="col-md-4">
+                      <div class="form-group label-floating is-empty">
+                        <label for="{{ form.qtd.id_for_label }}" class="control-label">Quantidade</label>
+                        <input type="number"
+                               name="{{ form.qtd.name }}"
+                               id="{{ form.qtd.id_for_label }}"
+                               {% if form.qtd.value != None %}value="{{ form.qtd.value|stringformat:'s' }} "{% endif %}
+                               maxlength="{{ form.qtd.field.max_length }}"
+                               class="form-control"
+                               {% if form.qtd.field.required %}required{% endif %}>
+                      </div>
+                    </div>
+
+                  </div>
+                  {# row #}
+                  <textarea
+                    rows=2
+                    name="{{ form.obs.name }}"
+                    id="{{ form.obs.id_for_label }}"
+                    maxlength="{{ form.obs.field.max_length }}"
+                    class="form-control"
+                    placeholder="Observações"
+                    {% if form.obs.field.required %}required{% endif %}></textarea>
+
+                  {#                  {{ form.as_p }}#}
+                  <button type="submit" class="btn btn-success pull-right">Cadastrar pedido</button>
+                </form>
+
+
               </div>
+              {#end new donation#}
+
             </div>
 
           </div>
@@ -104,4 +184,6 @@
   {#Fim Seletores#}
 
 
+{% endblock %}
+{% block bottom_scripts %}
 {% endblock %}
