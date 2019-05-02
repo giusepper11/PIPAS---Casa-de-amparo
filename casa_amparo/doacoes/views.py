@@ -4,10 +4,11 @@ from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, UpdateView
 
 from casa_amparo.doacoes.forms import DoacaoOutrosForm, DemandaDoacaoForm
-from casa_amparo.doacoes.models import DemandaDoacao
+from casa_amparo.doacoes.models import DemandaDoacao, DoacaoUser
 # Create your views here.
 from casa_amparo.instituicoes.models import InstituicaoLista
 from casa_amparo.users.decorators import instituicao_required
+from casa_amparo.users.models import CustomUser
 
 
 class DoacaoOutrosCreateView(CreateView):
@@ -29,6 +30,7 @@ class DoacaoDashboardView(CreateView):
         context = super().get_context_data(**kwargs)
         context['body_style'] = 'profile-page'
         context['donations'] = DemandaDoacao.objects.filter(instituicao__user_inst__pf__user__id=self.request.user.id)
+        context['donations_offer'] = DoacaoUser.objects.filter(demanda__instituicao__user_inst__pf__user__id=self.request.user.id)
 
         return context
 
@@ -49,13 +51,33 @@ class DoacoesUpdatelView(UpdateView):
     def get_queryset(self):
         donations = super().get_queryset()
         return donations.filter(instituicao__user_inst__pf__user__id=self.request.user.id)
-    #
-    # def form_valid(self, form):
-    #     super().form_valid(form)
-    #     print("To aqui")
-    #     return reverse('doacoes:doacao_dashboard')
-    # #
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     return context
-    #
+
+
+class UserDonate(CreateView):
+    template_name = 'doacoes/modal_offer_donation.html'
+    model = DoacaoUser
+    fields = ('obs',)
+
+    def __init__(self):
+        super().__init__()
+
+    def get(self, request, *args, **kwargs):
+        self.request.session['inst_id'] = kwargs.get('inst_pk')
+        self.request.session['donation_id'] = kwargs.get('donation_pk')
+        return super().get(self, request, args, kwargs)
+
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.demanda = DemandaDoacao.objects.get(id=self.request.session.get('donation_id'))
+        self.object.doador = CustomUser.objects.get(id=self.request.user.id)
+        self.object.save()
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse('instituicoes:inst_detail', kwargs={'pk': self.request.session.get('inst_id')})
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['inst_id'] = self.request.session.get('inst_id')
+        context['donation_id'] = self.request.session.get('donation_id')
+        return context

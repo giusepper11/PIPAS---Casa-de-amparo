@@ -7,7 +7,6 @@
 
 {% block top_scripts_block %}
   <script src="http://malsup.github.com/jquery.form.js"></script>
-
 {% endblock %}
 {% block page_header %}
   {% include 'instituicoes/base/instdetail_header_base.html' %}
@@ -112,8 +111,37 @@
                 </table>
               </div>
 
+
+              {#ABA OFFERS#}
               <div class="tab-pane" id="updates">
-                <p> loren </p>
+                <table class="table table-hover table-condensed" id="doacao">
+                  <thead>
+                  <tr class="success">
+                    <th class="title">Doação</th>
+                    <th class="title">Doador</th>
+                    <th class="title">E-mail</th>
+                    <th class="title">Obs</th>
+                    <th class="title">Data da oferta</th>
+
+                  </tr>
+                  </thead>
+                  <tbody id="">
+
+                  {% for offer in donations_offer %}
+                    <tr class="tr clickable-row" id="" data-href='#'>
+                    <td class="text-left">{{ offer.demanda.doacao }}</td>
+                    <td class="text-left">{{ offer.doador.pessoafisica.nome }}</td>
+                    <td class="text-left">{{ offer.doador.email }}</td>
+                    <td class="text-left">{{ offer.obs }}</td>
+                    <td class="text-left">{{ offer.dt_criacao | date }}</td>
+
+                  {% endfor %}
+
+                  </tr>
+
+
+                  </tbody>
+                </table>
               </div>
 
 

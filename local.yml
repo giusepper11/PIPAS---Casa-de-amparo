@@ -10,7 +10,7 @@ services:
       context: .
       dockerfile: ./compose/local/django/Dockerfile
     image: casa_amparo_local_django
-#    restart: always
+    restart: on-failure
     depends_on:
       - postgres
       - mailhog

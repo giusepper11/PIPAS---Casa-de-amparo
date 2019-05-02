@@ -1,0 +1,52 @@
+{% load filters %}
+{% load staticfiles %}
+<div class="modal-dialog modal-notice">
+  <div class="modal-content">
+    <form id="item_update_form" method='post' class="form" role="form"
+          action="{% url 'doacoes:oferta_doacao' inst_id donation_id %}">
+      <div class="modal-header">
+        <h2 class="modal-title title" id="myModalLabel">Você deseja ajudar a instituição com esta doação ?</h2>
+      </div>
+      <div class="modal-body text-center">
+        <button type="submit" class="btn btn-success" style="margin-bottom: 5px;">SIM</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal" aria-hidden="true"
+                style="margin-bottom: 5px;">NÃO
+        </button>
+
+      </div>
+      <div class="modal-footer text-center">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        <p>Suas informações de contato serão compartilhadas com a instituição, se deseja inserir
+          alguma observação digite abaixo</p>
+        <div class="form-group">
+          {% for field in form %}
+            {{ field.id }}
+            <div class="form-group">
+              {% if field.errors %}
+                <ul class="form-errors">
+                  {% for error in field.errors %}
+                    <li><span class="fa fa-exclamation-triangle"></span> <strong>{{ error|escape }}</strong></li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+
+              {{ field }}
+              {% if field.help_text %}
+                <div class="form-helptext">{{ field.help_text }}</div>{% endif %}
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </form>
+    <script>
+      var form_options = {
+        target: '#modal', success: function (response) {
+          window.location.reload();
+        }
+      };
+      $('#item_update_form').ajaxForm(form_options);
+
+    </script>
+  </div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->

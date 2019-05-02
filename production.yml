@@ -49,20 +49,20 @@ services:
 
   redis:
     image: redis:3.2
-
-  celeryworker:
-    <<: *django
-    image: casa_amparo_production_celeryworker
-    command: /start-celeryworker
-
-  celerybeat:
-    <<: *django
-    image: casa_amparo_production_celerybeat
-    command: /start-celerybeat
-
-  flower:
-    <<: *django
-    image: casa_amparo_production_flower
-    ports:
-      - "5555:5555"
-    command: /start-flower
+#
+#  celeryworker:
+#    <<: *django
+#    image: casa_amparo_production_celeryworker
+#    command: /start-celeryworker
+#
+#  celerybeat:
+#    <<: *django
+#    image: casa_amparo_production_celerybeat
+#    command: /start-celerybeat
+#
+#  flower:
+#    <<: *django
+#    image: casa_amparo_production_flower
+#    ports:
+#      - "5555:5555"
+#    command: /start-flower

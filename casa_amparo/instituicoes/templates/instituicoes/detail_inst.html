@@ -4,10 +4,30 @@
 {% block title_block %}
   <title>{{ instituicaolista.instituicao }}</title>
 {% endblock %}
+
+{% block top_scripts_block %}
+  <script src="http://malsup.github.com/jquery.form.js"></script>
+{% endblock %}
+
 {% block page_header %}
   {% include 'instituicoes/base/instdetail_header_base.html' %}
 {% endblock %}
 {% block body_block %}
+
+  {#  modal#}
+  <div class="modal fade in" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+       aria-hidden="true" data-backdrop="false">
+
+    <div class="modal-dialog">
+
+      <div class="modal-content">
+
+      </div>
+    </div>
+
+  </div>
+  {#  fim modal#}
+
   <div class="profile-content">
     <div class="container">
 
@@ -167,9 +187,18 @@
                         <td class="text-left">{{ doacao.qtd }}</td>
                         <td class="text-left">{{ doacao.obs }}</td>
                         <td class="text-left">{{ doacao.dt_criacao }}</td>
-                        {% if user.is_authenticated  %}
-                          <td class="text-left"><a href="#"
-                                                   class="btn btn-success">DOAR</a></td>
+                        {% if user.is_authenticated %}
+                          <td class="text-left">
+                            {#                            <a#}
+                            {#                              href="{% url 'doacoes:oferta_doacao' instituicaolista.id doacao.id %}"#}
+                            {#                              class="btn btn-success">DOAR</a>#}
+
+
+                            <a href="{% url 'doacoes:oferta_doacao' instituicaolista.id doacao.id %}"
+                               data-toggle="modal"
+                               rel="tooltip" data-target="#modal" title="Ajudar com este item" data-tooltip
+                               class="btn btn-success">DOAR</a>
+                          </td>
                         {% endif %}
                       {% endfor %}
 

@@ -19,12 +19,14 @@ class DemandaDoacao(models.Model):
 
 
 #
-# class Doacao(models.Model):
-#     doador = models.ForeignKey(Pessoa, on_delete=models.DO_NOTHING)
-#     demanda = models.ForeignKey(DemandaDoacao, on_delete=models.DO_NOTHING)
-#     dt_criacao = models.DateTimeField(auto_now_add=True)
-#     dt_atualizacao = models.DateTimeField(auto_now=True)
-#     obs = models.TextField(blank=True, null=True)
+class DoacaoUser(models.Model):
+    doador = models.ForeignKey(CustomUser, on_delete=models.DO_NOTHING)
+    demanda = models.ForeignKey(DemandaDoacao, on_delete=models.DO_NOTHING)
+    dt_criacao = models.DateTimeField(auto_now_add=True)
+    dt_atualizacao = models.DateTimeField(auto_now=True)
+    obs = models.TextField(blank=True, null=True)
+
+
 #
 
 class DoacaoOutros(models.Model):
