@@ -40,4 +40,4 @@ class InstituicaoLista(models.Model):
             long_lat = self.lat_long.split(',')
             return {'lng': long_lat[-1], 'lat': long_lat[0]}
         else:
-            return None
+            return {}

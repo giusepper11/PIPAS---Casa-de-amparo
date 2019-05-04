@@ -16,6 +16,19 @@ class DoacaoOutrosCreateView(CreateView):
     form_class = DoacaoOutrosForm
     success_url = 'donation_dashboard'
 
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.instituicao = InstituicaoLista.objects.get(id=self.kwargs.get('inst_pk'))
+        self.object.save()
+        return super().form_valid(form)
+
+    def get(self, request, *args, **kwargs):
+        self.request.session['inst_id'] = kwargs.get('inst_pk')
+        return super().get(self, request, args, kwargs)
+
+    def get_success_url(self):
+        return reverse('instituicoes:inst_detail', kwargs={'pk': self.kwargs.get('inst_pk')})
+
 
 @method_decorator([login_required, instituicao_required], name='dispatch')
 class DoacaoDashboardView(CreateView):
@@ -30,7 +43,8 @@ class DoacaoDashboardView(CreateView):
         context = super().get_context_data(**kwargs)
         context['body_style'] = 'profile-page'
         context['donations'] = DemandaDoacao.objects.filter(instituicao__user_inst__pf__user__id=self.request.user.id)
-        context['donations_offer'] = DoacaoUser.objects.filter(demanda__instituicao__user_inst__pf__user__id=self.request.user.id)
+        context['donations_offer'] = DoacaoUser.objects.filter(
+            demanda__instituicao__user_inst__pf__user__id=self.request.user.id)
 
         return context
 

@@ -6,7 +6,7 @@ from casa_amparo.doacoes.models import DoacaoOutros, DemandaDoacao
 class DoacaoOutrosForm(forms.ModelForm):
     class Meta:
         model = DoacaoOutros
-        exclude = ('doador', 'instituicao',)
+        exclude = ('instituicao',)
 
 
 class DemandaDoacaoForm(forms.ModelForm):

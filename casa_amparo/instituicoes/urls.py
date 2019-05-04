@@ -1,6 +1,6 @@
-from django.urls import path, include
+from django.urls import path
+
 from casa_amparo.instituicoes.views import InstituicoesListView, InstituicaoDetailView, ajax_instfilter
-from django.views.decorators.cache import never_cache
 
 app_name = 'instituicoes'
 
