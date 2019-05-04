@@ -36,7 +36,8 @@ class DoacaoOutros(models.Model):
         ('SERVICES', 'Serviços')
     )
 
-    doador = models.ForeignKey(CustomUser, on_delete=models.DO_NOTHING)
+    nome = models.CharField(max_length=30)
+    telefone = models.CharField(max_length=30)
     instituicao = models.ForeignKey(InstituicaoLista, on_delete=models.DO_NOTHING)
     tipo_doacao = models.CharField(max_length=8, choices=TIPO_DOACAO)
     doacao = models.CharField(max_length=300)
@@ -44,7 +45,4 @@ class DoacaoOutros(models.Model):
     dt_atualizacao = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f"{self.doador.username} : {self.doacao}"
-
-    def get_absolute_url(self):
-        return reverse('home_page')
+        return f"{self.nome} = {self.telefone} : {self.doacao}"
