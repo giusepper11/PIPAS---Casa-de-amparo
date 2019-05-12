@@ -93,15 +93,15 @@ TEMPLATES[0]['OPTIONS']['loaders'] = [  # noqa F405
 
 # EMAIL
 # ------------------------------------------------------------------------------
-# https://docs.djangoproject.com/en/dev/ref/settings/#default-from-email
-DEFAULT_FROM_EMAIL = env(
-    'DJANGO_DEFAULT_FROM_EMAIL',
-    default='Casa de Amparo <noreply@doesimples.ga>'
-)
-# https://docs.djangoproject.com/en/dev/ref/settings/#server-email
-SERVER_EMAIL = env('DJANGO_SERVER_EMAIL', default=DEFAULT_FROM_EMAIL)
-# https://docs.djangoproject.com/en/dev/ref/settings/#email-subject-prefix
-EMAIL_SUBJECT_PREFIX = env('DJANGO_EMAIL_SUBJECT_PREFIX', default='[Casa de Amparo]')
+# # https://docs.djangoproject.com/en/dev/ref/settings/#default-from-email
+# DEFAULT_FROM_EMAIL = env(
+#     'DJANGO_DEFAULT_FROM_EMAIL',
+#     default='Casa de Amparo <noreply@doesimples.ga>'
+# )
+# # https://docs.djangoproject.com/en/dev/ref/settings/#server-email
+# SERVER_EMAIL = env('DJANGO_SERVER_EMAIL', default=DEFAULT_FROM_EMAIL)
+# # https://docs.djangoproject.com/en/dev/ref/settings/#email-subject-prefix
+# EMAIL_SUBJECT_PREFIX = env('DJANGO_EMAIL_SUBJECT_PREFIX', default='[Casa de Amparo]')
 
 # ADMIN
 # ------------------------------------------------------------------------------
@@ -111,13 +111,20 @@ ADMIN_URL = env('DJANGO_ADMIN_URL')
 # Anymail (Mailgun)
 # ------------------------------------------------------------------------------
 # https://anymail.readthedocs.io/en/stable/installation/#installing-anymail
-INSTALLED_APPS += ['anymail']  # noqa F405
-EMAIL_BACKEND = 'anymail.backends.mailgun.EmailBackend'
-# https://anymail.readthedocs.io/en/stable/installation/#anymail-settings-reference
-ANYMAIL = {
-    'MAILGUN_API_KEY': env('MAILGUN_API_KEY'),
-    'MAILGUN_SENDER_DOMAIN': env('MAILGUN_DOMAIN')
-}
+# INSTALLED_APPS += ['anymail']  # noqa F405
+# EMAIL_BACKEND = 'anymail.backends.mailgun.EmailBackend'
+# # https://anymail.readthedocs.io/en/stable/installation/#anymail-settings-reference
+# ANYMAIL = {
+#     'MAILGUN_API_KEY': env('MAILGUN_API_KEY'),
+#     'MAILGUN_SENDER_DOMAIN': env('MAILGUN_DOMAIN')
+# }
+#
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_USE_SSL = True
+EMAIL_PORT = 465
+EMAIL_HOST_USER = env('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
 
 # Gunicorn
 # ------------------------------------------------------------------------------
@@ -127,7 +134,6 @@ INSTALLED_APPS += ['gunicorn']  # noqa F405
 # ------------------------------------------------------------------------------
 # http://whitenoise.evans.io/en/latest/django.html#enable-whitenoise
 MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')  # noqa F405
-
 
 # LOGGING
 # ------------------------------------------------------------------------------

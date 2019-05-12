@@ -1,4 +1,7 @@
 from django.contrib.auth.decorators import login_required
+# from django.core.mail import send_mail
+from django.shortcuts import render
+from django.template.loader import render_to_string
 from django.urls import reverse
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, UpdateView
@@ -9,6 +12,7 @@ from casa_amparo.doacoes.models import DemandaDoacao, DoacaoUser
 from casa_amparo.instituicoes.models import InstituicaoLista
 from casa_amparo.users.decorators import instituicao_required
 from casa_amparo.users.models import CustomUser
+from casa_amparo.utils.utils import send_html_mail
 
 
 class DoacaoOutrosCreateView(CreateView):
@@ -20,6 +24,10 @@ class DoacaoOutrosCreateView(CreateView):
         self.object = form.save(commit=False)
         self.object.instituicao = InstituicaoLista.objects.get(id=self.kwargs.get('inst_pk'))
         self.object.save()
+        subject = "Oferta de doação de {}".format(self.object.nome)
+        html_message = render_to_string('doacoes/emails/oferta_doacao_outros_email.html',
+                                        context={'doador': self.object})
+        send_html_mail(subject, html_message, [self.object.instituicao.user_inst.pf.user.email])
         return super().form_valid(form)
 
     def get(self, request, *args, **kwargs):

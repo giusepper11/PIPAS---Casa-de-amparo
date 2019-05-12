@@ -334,3 +334,4 @@ casa_amparo/media/
 .idea/
 
 
+/.envs/.local/.secretenv
