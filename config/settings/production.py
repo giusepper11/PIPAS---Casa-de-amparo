@@ -135,6 +135,15 @@ INSTALLED_APPS += ['gunicorn']  # noqa F405
 # http://whitenoise.evans.io/en/latest/django.html#enable-whitenoise
 MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')  # noqa F405
 
+
+#GOOGLE ANALYTICS
+
+USE_GA = env('USE_GA', cast=bool, default=False)
+GA_TRACKING_ID = env('GA_TRACKING_ID')
+if USE_GA:
+    TEMPLATES[0]['context_processors'].append('config.context_processors.ga_tracking_id')
+    TEMPLATES[0]['context_processors'].append('config.context_processors.use_ga')
+
 # LOGGING
 # ------------------------------------------------------------------------------
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#logging

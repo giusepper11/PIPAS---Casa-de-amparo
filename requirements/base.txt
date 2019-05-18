@@ -17,6 +17,8 @@ django-allauth==0.38.0  # https://github.com/pennersr/django-allauth
 django-crispy-forms==1.7.2  # https://github.com/django-crispy-forms/django-crispy-forms
 django-redis==4.10.0  # https://github.com/niwinz/django-redis
 django-localflavor==2.1
+google-api-python-client==1.6.2
+oauth2client
 
 # Django REST Framework
 djangorestframework==3.9.0  # https://github.com/encode/django-rest-framework
@@ -24,3 +26,4 @@ coreapi==2.3.3  # https://github.com/core-api/python-client
 django-cors-headers
 django-filter
 django_celery_beat==1.3.0 # https://github.com/celery/django-celery-beat
+
