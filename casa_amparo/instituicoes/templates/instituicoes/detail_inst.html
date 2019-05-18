@@ -222,7 +222,10 @@
             <div class="row"></div>
             <div class="col-md-10 col-md-offset-1">
               <h3 class="title">Se deseja ofereçer ajuda de algo que não está na lista, clique abaixo</h3>
-              <a href="{% url 'doacoes:doacao_outros_create' instituicaolista.pk %}" class="btn btn-success">Ajudar</a>
+              <a href="{% url 'doacoes:doacao_outros_create' instituicaolista.pk %}"
+                 data-toggle="modal"
+                 rel="tooltip" data-target="#modal" title="Ajudar com este item" data-tooltip
+                 class="btn btn-success">Ajudar</a>
             </div>
           </div>
           {#Fim TAB chat#}
