@@ -1,3 +1,4 @@
+from django.core.validators import MinValueValidator
 from django.db import models
 from django.urls import reverse
 
@@ -8,7 +9,7 @@ from casa_amparo.users.models import Pessoa, CustomUser
 class DemandaDoacao(models.Model):
     instituicao = models.ForeignKey(InstituicaoLista, on_delete=models.DO_NOTHING)
     doacao = models.CharField(max_length=200)
-    qtd = models.IntegerField(default=1)
+    qtd = models.PositiveIntegerField(default=1, validators=[MinValueValidator(1)])
     obs = models.TextField(blank=True, null=True)
     recebido = models.BooleanField(default=False)
     dt_criacao = models.DateTimeField(auto_now_add=True)

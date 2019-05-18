@@ -171,6 +171,7 @@
                       <div class="form-group label-floating is-empty">
                         <label for="{{ form.qtd.id_for_label }}" class="control-label">Quantidade</label>
                         <input type="number"
+                               min="1"
                                name="{{ form.qtd.name }}"
                                id="{{ form.qtd.id_for_label }}"
                                {% if form.qtd.value != None %}value="{{ form.qtd.value|stringformat:'s' }} "{% endif %}
