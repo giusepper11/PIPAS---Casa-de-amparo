@@ -1,13 +1,14 @@
 from django.contrib import admin
+
 from casa_amparo.users.models import *
+from casa_amparo.utils.utils import ExportCsvMixin
 
 
-#
-
-class UsuarioListaAdmin(admin.ModelAdmin):
+class UsuarioListaAdmin(admin.ModelAdmin, ExportCsvMixin):
     list_display = ('email', 'username', 'date_joined', 'last_login', 'eh_pf', 'eh_pj', 'esta_ativo')
     search_fields = ('email', 'username')
     list_filter = ('is_pf', 'is_pj', 'is_active')
+    actions = ['export_as_csv']
 
     def esta_ativo(self, obj):
         if obj.is_active:
